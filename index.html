@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+        <head>
+<link rel="stylesheet" type="text/css" href="style%20viva.css">
+            <script>
+            function imageZoom(imgID, resultID) {
+  var img, lens, result, cx, cy;
+  img = document.getElementById(imgID);
+  result = document.getElementById(resultID);
+  /* Create lens: */
+  lens = document.createElement("DIV");
+  lens.setAttribute("class", "img-zoom-lens");
+  /* Insert lens: */
+  img.parentElement.insertBefore(lens, img);
+  /* Calculate the ratio between result DIV and lens: */
+  cx = result.offsetWidth / lens.offsetWidth;
+  cy = result.offsetHeight / lens.offsetHeight;
+  /* Set background properties for the result DIV */
+  result.style.backgroundImage = "url('" + img.src + "')";
+  result.style.backgroundSize = (img.width * cx) + "px " + (img.height * cy) + "px";
+  /* Execute a function when someone moves the cursor over the image, or the lens: */
+  lens.addEventListener("mousemove", moveLens);
+  img.addEventListener("mousemove", moveLens);
+  /* And also for touch screens: */
+  lens.addEventListener("touchmove", moveLens);
+  img.addEventListener("touchmove", moveLens);
+  function moveLens(e) {
+    var pos, x, y;
+    /* Prevent any other actions that may occur when moving over the image */
+    e.preventDefault();
+    /* Get the cursor's x and y positions: */
+    pos = getCursorPos(e);
+    /* Calculate the position of the lens: */
+    x = pos.x - (lens.offsetWidth / 2);
+    y = pos.y - (lens.offsetHeight / 2);
+    /* Prevent the lens from being positioned outside the image: */
+    if (x > img.width - lens.offsetWidth) {x = img.width - lens.offsetWidth;}
+    if (x < 0) {x = 0;}
+    if (y > img.height - lens.offsetHeight) {y = img.height - lens.offsetHeight;}
+    if (y < 0) {y = 0;}
+    /* Set the position of the lens: */
+    lens.style.left = x + "px";
+    lens.style.top = y + "px";
+    /* Display what the lens "sees": */
+    result.style.backgroundPosition = "-" + (x * cx) + "px -" + (y * cy) + "px";
+  }
+  function getCursorPos(e) {
+    var a, x = 0, y = 0;
+    e = e || window.event;
+    /* Get the x and y positions of the image: */
+    a = img.getBoundingClientRect();
+    /* Calculate the cursor's x and y coordinates, relative to the image: */
+    x = e.pageX - a.left;
+    y = e.pageY - a.top;
+    /* Consider any page scrolling: */
+    x = x - window.pageXOffset;
+    y = y - window.pageYOffset;
+    return {x : x, y : y};
+  }
+}
+            
+            </script>
+</head>
+<body>
+
+<div class="header">
+  <h1>GOOD NEWS</h1>
+  <p>WE BELIVE IN TRUSTWORTHY NEWS.</p>
+    <br>
+    <a href="basic%20css%20.html" style="float: right">LOGIN</a><br>
+    
+</div>
+
+<div class="topnav">
+  <a href="https://www.timesofindia.indiatimes.com/">MUSTREAD</a>
+  <a href="https://www.digitaltrends.com/">TECHNOLOGY</a>
+  <a href="https://www.bussinessinsider.com/">BUSSINESS</a>
+  <a href="#">ENTERTAINMENT</a>
+    <a href="#">SOCIAL MEDIA</a>
+    <a href="#">FEATURES<select>
+				<option value="1">>>></option>
+				<option value="2">KNOWLEDGE FACTS</option>
+				<option value="3">FUN FACTS</option>
+				<option value="4">QUIZ</option>
+			</select>
+    </a>
+    <a href="https://www.google.com">SEARCH</a>
+    </div>
+
+<div class="row">
+  <div class="leftcolumn">
+    <div class="card">
+      <h2>if you wanted to get rich,how would you do it?</h2>
+      <h5>posted by angela chris, may 2, 2019</h5>
+      <div class="fakeimg" style="height:200px;"><img src="electro%20mart.jpg" width="400px" height="200px" onmouseover="style."></div>
+      <p>Some text..</p>
+      <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+    </div>
+    <div class="card">
+      <h2>startup usually involve technology, so much so that the pharse....</h2>
+      <h5>posted by donald snas, may 1, 2019</h5>
+      <div class="fakeimg" style="height:200px;"><img src="television.jpg" width="400px" height="200px">
+    
+</div>
+      <p>Some text..</p>
+      <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+    </div><br>
+    <div class="img-zoom-container">
+  <img id="myimage" src="television.jpg" width="300" height="240" alt="god">
+  <div id="myresult" class="img-zoom-result"></div>
+</div>
+  </div>
+  <div class="rightcolumn">
+    <div class="card">
+      <h2>here is a brief sketch of the economic proposition.... </h2>
+      <div class="fakeimg" style="height:100px;"><img src="laptop.jpg" width="100px" height="100px"></div>
+      <p>Some text about me in culpa qui officia deserunt mollit anim..</p>
+    </div>
+    <div class="card">
+      <h3>Popular Post</h3>
+      <div class="fakeimg"><p><img src="asphalt.png" width="100px" height="100px"> startups are at full on speed around the world...</p></div><br>
+      <div class="fakeimg"><p><img src="endgame.jpg" width="100px" height="100px">marvel studios avengers endgame is smashing the records of boxoffice</p></div><br>
+      <div class="fakeimg"><p><img src="25.jpg" width="150px" height="100px">you don't have to know physics to be....</p></div><br>
+    </div>
+    <div class="card">
+      <h3>Follow Me</h3>
+      <p>Some text..</p>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <h2>Footer</h2>
+    <p>pls don't use any type of hacking software .</p>
+</div>
+<script>
+    imageZoom("myimage", "myresult"); 
+    </script>
+</body>
+</html>
